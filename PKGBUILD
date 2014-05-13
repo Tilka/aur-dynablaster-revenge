@@ -12,10 +12,10 @@ depends=('qt4' 'sdl2')
 backup=("opt/$pkgname/data/game.ini"
         "opt/$pkgname/data/server.ini")
 source=("http://prods.j-chaos.net/${_pkgname}.zip"
-        'dynablaster-revenge'
-        'dynablaster-revenge-server'
-        'dynablaster-revenge.desktop'
-        'dynablaster-revenge.service')
+        "$pkgname"
+        "$pkgname-server"
+        "$pkgname.desktop"
+        "$pkgname.service")
 sha256sums=('83ea853be15bb0a2d95a214b2d6888de06456fb8d0f57ebb2f4a1422c85a0e46'
             'c9d1473058c48bf7d48651f12faaf4fc6464f2658570e831921a10116ce7bc0c'
             '1d1bdf7a8d2b432cf99476e3215d1d1aaaf1ec28cecbd0640d2e142afa0ecb0f'
@@ -43,8 +43,8 @@ package() {
   cd "$pkgdir"
   mkdir -p opt usr/bin
   cp -r --preserve=mode,timestamp "$srcdir/$_pkgname" "opt/$pkgname"
-  install -Dm644 "$srcdir/dynablaster-revenge.desktop" usr/share/applications/dynablaster-revenge.desktop
-  install -Dm644 "$srcdir/dynablaster-revenge.service" usr/lib/systemd/system/dynablaster-revenge.service
-  install -Dm755 "$srcdir/dynablaster-revenge" usr/bin/dynablaster-revenge
-  install -Dm755 "$srcdir/dynablaster-revenge-server" usr/bin/dynablaster-revenge-server
+  install -Dm644 "$srcdir/$pkgname.desktop" "usr/share/applications/${pkgname}.desktop"
+  install -Dm644 "$srcdir/$pkgname.service" "usr/lib/systemd/system/${pkgname}.service"
+  install -Dm755 "$srcdir/$pkgname" "usr/bin/$pkgname"
+  install -Dm755 "$srcdir/$pkgname-server" "usr/bin/$pkgname-server"
 }
